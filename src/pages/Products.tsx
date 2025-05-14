@@ -9,9 +9,9 @@ import { Apple, Carrot, Leaf } from "lucide-react";
 
 const Products = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-white">
       <Navbar />
-      <div className="bg-gradient-to-b from-favian-green-light/10 to-transparent py-16">
+      <div className="bg-white py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-display font-medium text-favian-green-dark text-center mb-6">Nos Produits</h1>
           <p className="text-center text-favian-earth-dark max-w-2xl mx-auto text-lg">
@@ -19,10 +19,10 @@ const Products = () => {
           </p>
         </div>
       </div>
-      <main className="flex-grow container mx-auto px-4 py-12">
+      <main className="flex-grow container mx-auto px-4 py-12 bg-white">
         <Tabs defaultValue="fruits" className="w-full">
           <div className="flex justify-center mb-12">
-            <TabsList className="bg-transparent border-b border-favian-green-light/30 w-full md:w-auto overflow-x-auto">
+            <TabsList className="bg-white border-b border-favian-green-light/30 w-full md:w-auto overflow-x-auto">
               <TabsTrigger value="fruits" className="data-[state=active]:text-favian-green data-[state=active]:border-b-2 data-[state=active]:border-favian-green data-[state=active]:bg-transparent text-base px-6">
                 Fruits
               </TabsTrigger>
@@ -150,7 +150,7 @@ const ProductCard = ({ title, description, icon, image }: ProductCardProps) => {
       )}
       <CardContent className={`${image ? 'pt-6' : 'pt-8'} p-6`}>
         <div className="flex items-center mb-4">
-          <div className="bg-favian-green-light/20 p-2 rounded-full mr-3">
+          <div className="bg-white border border-favian-green-light p-2 rounded-full mr-3">
             {icon}
           </div>
           <h3 className="text-xl font-medium text-favian-green-dark">{title}</h3>
