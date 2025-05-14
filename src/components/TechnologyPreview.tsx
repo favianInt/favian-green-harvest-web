@@ -2,12 +2,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { SolarPanel, Wind, Droplet, Recycle } from 'lucide-react';
+import { Sun, Wind, Droplet, Leaf } from 'lucide-react';
 
 const TechnologyPreview = () => {
   const technologies = [
     {
-      icon: SolarPanel,
+      icon: Sun,
       title: "Panneaux Solaires",
       description: "Systèmes photovoltaïques de dernière génération pour une autonomie énergétique.",
     },
@@ -22,7 +22,7 @@ const TechnologyPreview = () => {
       description: "Technologies innovantes pour exploiter l'énergie hydraulique à petite échelle.",
     },
     {
-      icon: Recycle,
+      icon: Leaf,
       title: "Biogaz Domestique",
       description: "Unités de méthanisation pour transformer les déchets organiques en énergie.",
     }

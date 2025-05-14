@@ -4,7 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
-import { Apple, Carrot, Vegetable } from "lucide-react";
+import { Apple, Carrot, Leaf } from "lucide-react";
 
 const Products = () => {
   return (
@@ -58,13 +58,13 @@ const Products = () => {
               <ProductCard
                 title="Légumes Hydroponiques"
                 description="Notre système hydroponique produit des légumes-feuilles tout au long de l'année, avec une consommation d'eau réduite de 90%."
-                icon={<Vegetable className="h-8 w-8 text-favian-green" />}
+                icon={<Leaf className="h-8 w-8 text-favian-green" />}
                 image="https://images.unsplash.com/photo-1518495973542-4542c06a5843?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTcxNjI5MTkwNw&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080"
               />
               <ProductCard
                 title="Légumes Aquaponiques"
                 description="Notre système aquaponique allie culture de poissons et de légumes pour un écosystème circulaire qui optimise les ressources."
-                icon={<Vegetable className="h-8 w-8 text-favian-green" />}
+                icon={<Leaf className="h-8 w-8 text-favian-green" />}
               />
               <ProductCard
                 title="Légumes-Racines"
@@ -84,12 +84,12 @@ const Products = () => {
               <ProductCard
                 title="Herbes Aromatiques Fraîches"
                 description="Basilic, persil, ciboulette... Nos herbes aromatiques sont cultivées sans pesticides et récoltées à la demande."
-                icon={<Vegetable className="h-8 w-8 text-favian-green" />}
+                icon={<Leaf className="h-8 w-8 text-favian-green" />}
               />
               <ProductCard
                 title="Herbes Médicinales"
                 description="Nous cultivons diverses plantes aux propriétés médicinales traditionnelles, dans le respect de pratiques ancestrales."
-                icon={<Vegetable className="h-8 w-8 text-favian-green" />}
+                icon={<Leaf className="h-8 w-8 text-favian-green" />}
               />
             </div>
           </TabsContent>
