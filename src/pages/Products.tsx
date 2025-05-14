@@ -13,8 +13,8 @@ const Products = () => {
       <Navbar />
       <div className="bg-white py-16">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-display font-medium text-favian-green-dark text-center mb-6">Nos Produits</h1>
-          <p className="text-center text-favian-earth-dark max-w-2xl mx-auto text-lg">
+          <h1 className="text-4xl md:text-5xl font-display font-medium text-black text-center mb-6">Nos Produits</h1>
+          <p className="text-center text-black max-w-2xl mx-auto text-lg">
             Découvrez notre gamme de produits biologiques issus de pratiques agricoles durables et respectueuses de l'environnement.
           </p>
         </div>
@@ -153,9 +153,9 @@ const ProductCard = ({ title, description, icon, image }: ProductCardProps) => {
           <div className="bg-white border border-favian-green-light p-2 rounded-full mr-3">
             {icon}
           </div>
-          <h3 className="text-xl font-medium text-favian-green-dark">{title}</h3>
+          <h3 className="text-xl font-medium text-black">{title}</h3>
         </div>
-        <p className="text-favian-earth-dark text-sm leading-relaxed">{description}</p>
+        <p className="text-black text-sm leading-relaxed">{description}</p>
       </CardContent>
     </Card>
   );
