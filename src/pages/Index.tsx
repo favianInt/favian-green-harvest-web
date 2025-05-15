@@ -9,6 +9,7 @@ import TechnologyPreview from '@/components/TechnologyPreview';
 import NewsSummary from '@/components/NewsSummary';
 import ContactCTA from '@/components/ContactCTA';
 import Footer from '@/components/Footer';
+import PayPalDonation from '@/components/PayPalDonation';
 
 const Index = () => {
   return (
@@ -20,6 +21,7 @@ const Index = () => {
         <ProductPreview />
         <TechnologyPreview />
         <TestimonialSection />
+        <PayPalDonation />
         <NewsSummary />
         <ContactCTA />
       </main>
