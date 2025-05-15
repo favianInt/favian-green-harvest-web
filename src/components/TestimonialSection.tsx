@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 
 const testimonials = [
@@ -21,6 +21,34 @@ const testimonials = [
 ];
 
 const TestimonialSection = () => {
+  const testimonialRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const cards = document.querySelectorAll('.card-3d-hover');
+      
+      cards.forEach((card) => {
+        const rect = (card as HTMLElement).getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        (card as HTMLElement).style.setProperty('--mouse-x', `${x}px`);
+        (card as HTMLElement).style.setProperty('--mouse-y', `${y}px`);
+      });
+    };
+    
+    const container = testimonialRef.current;
+    if (container) {
+      container.addEventListener('mousemove', handleMouseMove);
+    }
+    
+    return () => {
+      if (container) {
+        container.removeEventListener('mousemove', handleMouseMove);
+      }
+    };
+  }, []);
+  
   return (
     <section className="py-16 px-4 bg-gradient-to-b from-white to-favian-green-light/20">
       <div className="container mx-auto">
@@ -31,10 +59,10 @@ const TestimonialSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6" ref={testimonialRef}>
           {testimonials.map((testimonial) => (
-            <Card key={testimonial.id} className="bg-white border-none shadow hover:shadow-md transition-shadow">
-              <CardContent className="p-6">
+            <Card key={testimonial.id} className="bg-white border-none shadow card-3d-hover">
+              <CardContent className="p-6 card-content-3d">
                 <svg className="h-8 w-8 text-favian-green mb-4" fill="currentColor" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                   <path d="M10 8c-3.3 0-6 2.7-6 6v10h10V14h-4c0-2.2 1.8-4 4-4V8zm18 0c-3.3 0-6 2.7-6 6v10h10V14h-4c0-2.2 1.8-4 4-4V8z" />
                 </svg>

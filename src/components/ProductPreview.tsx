@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
@@ -26,6 +26,34 @@ const products = [
 ];
 
 const ProductPreview = () => {
+  const productContainerRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const cards = document.querySelectorAll('.card-3d-hover');
+      
+      cards.forEach((card) => {
+        const rect = (card as HTMLElement).getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        (card as HTMLElement).style.setProperty('--mouse-x', `${x}px`);
+        (card as HTMLElement).style.setProperty('--mouse-y', `${y}px`);
+      });
+    };
+    
+    const container = productContainerRef.current;
+    if (container) {
+      container.addEventListener('mousemove', handleMouseMove);
+    }
+    
+    return () => {
+      if (container) {
+        container.removeEventListener('mousemove', handleMouseMove);
+      }
+    };
+  }, []);
+  
   return (
     <section className="py-16 px-4 bg-favian-wood-light">
       <div className="container mx-auto">
@@ -36,9 +64,9 @@ const ProductPreview = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" ref={productContainerRef}>
           {products.map((product) => (
-            <Card key={product.id} className="overflow-hidden bg-white border-none shadow-md hover:shadow-lg transition-shadow">
+            <Card key={product.id} className="overflow-hidden bg-white border-none shadow-md card-3d-hover">
               <div className="h-48 overflow-hidden">
                 <img 
                   src={product.image} 
@@ -46,11 +74,11 @@ const ProductPreview = () => {
                   className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
                 />
               </div>
-              <CardContent className="pt-6">
+              <CardContent className="pt-6 card-content-3d">
                 <h3 className="text-xl font-semibold text-favian-green-dark mb-2">{product.name}</h3>
                 <p className="text-favian-earth-dark">{product.description}</p>
               </CardContent>
-              <CardFooter>
+              <CardFooter className="card-content-3d">
                 <Button asChild className="w-full bg-favian-green hover:bg-favian-green-dark text-white">
                   <Link to="/products">En savoir plus</Link>
                 </Button>

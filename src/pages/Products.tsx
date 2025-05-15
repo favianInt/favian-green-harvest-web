@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -8,6 +8,34 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Apple, Carrot, Leaf } from "lucide-react";
 
 const Products = () => {
+  const productsRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const cards = document.querySelectorAll('.card-3d-hover');
+      
+      cards.forEach((card) => {
+        const rect = (card as HTMLElement).getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        (card as HTMLElement).style.setProperty('--mouse-x', `${x}px`);
+        (card as HTMLElement).style.setProperty('--mouse-y', `${y}px`);
+      });
+    };
+    
+    const container = productsRef.current;
+    if (container) {
+      container.addEventListener('mousemove', handleMouseMove);
+    }
+    
+    return () => {
+      if (container) {
+        container.removeEventListener('mousemove', handleMouseMove);
+      }
+    };
+  }, []);
+  
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <Navbar />
@@ -19,7 +47,7 @@ const Products = () => {
           </p>
         </div>
       </div>
-      <main className="flex-grow container mx-auto px-4 py-12 bg-white">
+      <main className="flex-grow container mx-auto px-4 py-12 bg-white" ref={productsRef}>
         <Tabs defaultValue="fruits" className="w-full">
           <div className="flex justify-center mb-12">
             <TabsList className="bg-white border-b border-favian-green-light/30 w-full md:w-auto overflow-x-auto">
@@ -136,7 +164,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ title, description, icon, image }: ProductCardProps) => {
   return (
-    <Card className="overflow-hidden border-none bg-white shadow-sm hover:shadow-md transition-shadow duration-300">
+    <Card className="overflow-hidden border-none bg-white shadow-sm card-3d-hover">
       {image && (
         <div className="relative">
           <AspectRatio ratio={16/9}>
@@ -148,7 +176,7 @@ const ProductCard = ({ title, description, icon, image }: ProductCardProps) => {
           </AspectRatio>
         </div>
       )}
-      <CardContent className={`${image ? 'pt-6' : 'pt-8'} p-6`}>
+      <CardContent className={`${image ? 'pt-6' : 'pt-8'} p-6 card-content-3d`}>
         <div className="flex items-center mb-4">
           <div className="bg-white border border-favian-green-light p-2 rounded-full mr-3">
             {icon}

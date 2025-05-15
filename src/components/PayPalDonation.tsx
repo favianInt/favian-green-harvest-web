@@ -1,10 +1,38 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Wallet, Heart } from "lucide-react";
 
 const PayPalDonation = () => {
+  const donationRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const cards = document.querySelectorAll('.card-3d-hover');
+      
+      cards.forEach((card) => {
+        const rect = (card as HTMLElement).getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        (card as HTMLElement).style.setProperty('--mouse-x', `${x}px`);
+        (card as HTMLElement).style.setProperty('--mouse-y', `${y}px`);
+      });
+    };
+    
+    const container = donationRef.current;
+    if (container) {
+      container.addEventListener('mousemove', handleMouseMove);
+    }
+    
+    return () => {
+      if (container) {
+        container.removeEventListener('mousemove', handleMouseMove);
+      }
+    };
+  }, []);
+  
   // Function to handle PayPal donation redirect
   const handleDonation = (amount: number) => {
     // Replace with your actual PayPal donation link
@@ -22,7 +50,7 @@ const PayPalDonation = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto" ref={donationRef}>
           <DonationCard amount={5} description="Soutien de Base" handleDonation={handleDonation} />
           <DonationCard amount={15} description="Soutien Intermédiaire" handleDonation={handleDonation} />
           <DonationCard amount={30} description="Grand Soutien" handleDonation={handleDonation} />
@@ -52,8 +80,8 @@ interface DonationCardProps {
 
 const DonationCard = ({ amount, description, handleDonation }: DonationCardProps) => {
   return (
-    <Card className="border-none bg-white shadow-md hover:shadow-lg transition-all duration-300">
-      <CardContent className="p-6 text-center">
+    <Card className="border-none bg-white shadow-md card-3d-hover">
+      <CardContent className="p-6 text-center card-content-3d">
         <div className="bg-black inline-flex items-center justify-center rounded-full p-3 mb-4">
           <Heart className="h-6 w-6 text-white" />
         </div>

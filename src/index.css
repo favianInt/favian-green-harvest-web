@@ -70,4 +70,35 @@
   .card-eco {
     @apply rounded-lg bg-white shadow-md p-6 hover:shadow-lg transition-shadow duration-300;
   }
+  
+  /* 3D Card Hover Effect */
+  .card-3d-hover {
+    @apply transition-all duration-300 ease-out transform-gpu relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+  }
+  
+  .card-3d-hover:hover {
+    @apply shadow-xl;
+    transform: scale(1.02) rotateX(2deg) rotateY(2deg);
+  }
+  
+  .card-3d-hover::before {
+    content: '';
+    @apply absolute inset-0 rounded-lg opacity-0 transition-opacity duration-300;
+    background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.15), transparent 40%);
+  }
+  
+  .card-3d-hover:hover::before {
+    @apply opacity-100;
+  }
+  
+  .card-content-3d {
+    @apply transition-transform duration-300;
+    transform-style: preserve-3d;
+  }
+  
+  .card-3d-hover:hover .card-content-3d {
+    transform: translateZ(20px);
+  }
 }
