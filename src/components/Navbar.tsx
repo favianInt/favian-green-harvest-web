@@ -1,86 +1,128 @@
 
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { cn } from '@/lib/utils';
-import { Menu, X, Leaf } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import AuthButton from './AuthButton';
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
-  const navItems = [
-    { name: 'Accueil', path: '/' },
-    { name: 'Nos Produits', path: '/products' },
-    { name: 'Nos Pratiques', path: '/practices' },
-    { name: 'Technologies Vertes', path: '/green-tech' },
-    { name: 'Services', path: '/services' },
-    { name: 'Actualités', path: '/news' },
-    { name: 'Contact', path: '/contact' },
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { path: '/', label: 'Accueil' },
+    { path: '/products', label: 'Produits' },
+    { path: '/services', label: 'Services' },
   ];
 
   return (
-    <nav className="bg-black sticky top-0 z-50 border-b border-white/10">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <Leaf className="h-8 w-8 text-white" />
-            <span className="text-2xl font-display font-bold text-white">FAVIAN</span>
-          </Link>
+    <header
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
+      }`}
+    >
+      <div className="container mx-auto px-4 flex justify-between items-center">
+        <Link to="/" className="text-2xl font-bold text-favian-green">
+          FAVIAN
+        </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className="text-white hover:text-favian-green-light font-medium text-sm uppercase tracking-wider transition-colors duration-200"
-              >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Toggle menu"
-              className="text-white"
-            >
-              {isMenuOpen ? (
-                <X className="h-6 w-6 text-white" />
-              ) : (
-                <Menu className="h-6 w-6 text-white" />
-              )}
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Navigation */}
-      <div
-        className={cn(
-          "md:hidden fixed inset-0 bg-black/95 z-40 pt-16 px-4 transition-transform duration-300 ease-in-out transform",
-          isMenuOpen ? "translate-y-0" : "-translate-y-full"
-        )}
-      >
-        <div className="flex flex-col space-y-4 py-6">
-          {navItems.map((item) => (
+        {/* Desktop Menu */}
+        <nav className="hidden md:flex items-center space-x-6">
+          {navLinks.map((link) => (
             <Link
-              key={item.path}
-              to={item.path}
-              className="py-2 px-4 text-lg text-center text-white hover:text-favian-green-light font-medium uppercase tracking-wider transition-colors duration-200"
-              onClick={() => setIsMenuOpen(false)}
+              key={link.path}
+              to={link.path}
+              className={`text-base font-medium transition-colors ${
+                location.pathname === link.path
+                  ? 'text-favian-green-dark'
+                  : 'text-favian-earth-dark hover:text-favian-green'
+              }`}
             >
-              {item.name}
+              {link.label}
             </Link>
           ))}
-        </div>
+          <AuthButton />
+          <Button
+            asChild
+            className="bg-favian-green hover:bg-favian-green-dark text-white"
+          >
+            <Link to="/contact">Contact</Link>
+          </Button>
+        </nav>
+
+        {/* Mobile menu button */}
+        <button
+          className="md:hidden text-favian-earth-dark"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            {isMobileMenuOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            )}
+          </svg>
+        </button>
       </div>
-    </nav>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <nav className="md:hidden bg-white shadow-lg">
+          <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`text-base font-medium transition-colors ${
+                  location.pathname === link.path
+                    ? 'text-favian-green-dark'
+                    : 'text-favian-earth-dark hover:text-favian-green'
+                }`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <div className="pt-2 flex flex-col space-y-2">
+              <AuthButton />
+              <Button
+                asChild
+                className="bg-favian-green hover:bg-favian-green-dark text-white w-full"
+              >
+                <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                  Contact
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </nav>
+      )}
+    </header>
   );
 };
 

@@ -10,6 +10,7 @@ import NewsSummary from '@/components/NewsSummary';
 import ContactCTA from '@/components/ContactCTA';
 import Footer from '@/components/Footer';
 import PayPalDonation from '@/components/PayPalDonation';
+import KeyObjectives from '@/components/KeyObjectives';
 
 const Index = () => {
   return (
@@ -18,6 +19,7 @@ const Index = () => {
       <main className="flex-grow">
         <Hero />
         <FeaturedSection />
+        <KeyObjectives />
         <ProductPreview />
         <TechnologyPreview />
         <TestimonialSection />
