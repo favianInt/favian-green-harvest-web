@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 
 const Hero = () => {
   return (
-    <div className="relative overflow-hidden bg-gradient-to-b from-favian-green-light/80 to-transparent min-h-[70vh] flex flex-col justify-center">
+    <div className="relative overflow-hidden bg-gradient-to-b from-faverton-green-light/80 to-transparent min-h-[70vh] flex flex-col justify-center">
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center"
         style={{
@@ -15,17 +15,17 @@ const Hero = () => {
       />
       <div className="container mx-auto px-6 py-16 relative z-10 animate-fade-in">
         <div className="max-w-2xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-favian-green-dark mb-6">
-            Bienvenue à <span className="text-favian-green">FAVIAN</span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-faverton-green-dark mb-6">
+            Bienvenue à <span className="text-faverton-green">FAVERTON</span>
           </h1>
-          <p className="text-xl md:text-2xl text-favian-earth-dark mb-8">
+          <p className="text-xl md:text-2xl text-faverton-earth-dark mb-8">
             Une ferme biologique certifiée où innovation écologique et respect de la nature se rencontrent pour un avenir durable.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button asChild className="bg-favian-green hover:bg-favian-green-dark text-white">
+            <Button asChild className="bg-faverton-green hover:bg-faverton-green-dark text-white">
               <Link to="/products">Découvrir nos produits</Link>
             </Button>
-            <Button asChild variant="outline" className="border-favian-green text-favian-green hover:bg-favian-green-light/20">
+            <Button asChild variant="outline" className="border-faverton-green text-faverton-green hover:bg-faverton-green-light/20">
               <Link to="/contact">Nous contacter</Link>
             </Button>
           </div>

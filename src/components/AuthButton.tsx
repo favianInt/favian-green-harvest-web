@@ -21,7 +21,7 @@ const AuthButton = () => {
         <DropdownMenuTrigger asChild>
           <Button 
             variant="ghost" 
-            className="flex items-center gap-2 text-favian-green-dark hover:bg-favian-green-light/20"
+            className="flex items-center gap-2 text-faverton-green-dark hover:bg-faverton-green-light/20"
           >
             <User className="h-4 w-4" />
             <span className="hidden md:inline">{user.name}</span>
@@ -41,7 +41,7 @@ const AuthButton = () => {
     <>
       <Button 
         variant="ghost" 
-        className="text-favian-green-dark hover:bg-favian-green-light/20" 
+        className="text-faverton-green-dark hover:bg-faverton-green-light/20" 
         onClick={() => setIsModalOpen(true)}
       >
         Connexion

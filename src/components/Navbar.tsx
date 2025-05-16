@@ -19,7 +19,7 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { path: '/', label: 'Accueil' },
+    { path: '/welcome', label: 'Accueil' },
     { path: '/products', label: 'Produits' },
     { path: '/services', label: 'Services' },
   ];
@@ -31,8 +31,8 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold text-favian-green">
-          FAVIAN
+        <Link to="/welcome" className="text-2xl font-bold text-faverton-green">
+          FAVERTON
         </Link>
 
         {/* Desktop Menu */}
@@ -43,8 +43,8 @@ const Navbar = () => {
               to={link.path}
               className={`text-base font-medium transition-colors ${
                 location.pathname === link.path
-                  ? 'text-favian-green-dark'
-                  : 'text-favian-earth-dark hover:text-favian-green'
+                  ? 'text-faverton-green-dark'
+                  : 'text-faverton-earth-dark hover:text-faverton-green'
               }`}
             >
               {link.label}
@@ -53,7 +53,7 @@ const Navbar = () => {
           <AuthButton />
           <Button
             asChild
-            className="bg-favian-green hover:bg-favian-green-dark text-white"
+            className="bg-faverton-green hover:bg-faverton-green-dark text-white"
           >
             <Link to="/contact">Contact</Link>
           </Button>
@@ -61,7 +61,7 @@ const Navbar = () => {
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden text-favian-earth-dark"
+          className="md:hidden text-faverton-earth-dark"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           <svg
@@ -100,8 +100,8 @@ const Navbar = () => {
                 to={link.path}
                 className={`text-base font-medium transition-colors ${
                   location.pathname === link.path
-                    ? 'text-favian-green-dark'
-                    : 'text-favian-earth-dark hover:text-favian-green'
+                    ? 'text-faverton-green-dark'
+                    : 'text-faverton-earth-dark hover:text-faverton-green'
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -112,7 +112,7 @@ const Navbar = () => {
               <AuthButton />
               <Button
                 asChild
-                className="bg-favian-green hover:bg-favian-green-dark text-white w-full"
+                className="bg-faverton-green hover:bg-faverton-green-dark text-white w-full"
               >
                 <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
                   Contact

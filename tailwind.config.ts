@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -68,7 +69,7 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				favian: {
+				faverton: {
 					green: {
 						light: '#DEF2C8',
 						DEFAULT: '#78A046',
@@ -127,6 +128,30 @@ export default {
 						opacity: '1',
 						transform: 'translateX(0)'
 					}
+				},
+				'float-slow': {
+					'0%, 100%': { 
+						transform: 'translateY(0) translateX(0)' 
+					},
+					'50%': { 
+						transform: 'translateY(-20px) translateX(15px)' 
+					}
+				},
+				'float-medium': {
+					'0%, 100%': { 
+						transform: 'translateY(0) translateX(0)' 
+					},
+					'50%': { 
+						transform: 'translateY(-15px) translateX(-10px)' 
+					}
+				},
+				'float-fast': {
+					'0%, 100%': { 
+						transform: 'translateY(0) translateX(0)' 
+					},
+					'50%': { 
+						transform: 'translateY(-10px) translateX(10px)' 
+					}
 				}
 			},
 			animation: {
@@ -134,6 +159,9 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.7s ease-out',
 				'fade-in-left': 'fade-in-left 0.7s ease-out',
+				'float-slow': 'float-slow 8s ease-in-out infinite',
+				'float-medium': 'float-medium 6s ease-in-out infinite',
+				'float-fast': 'float-fast 4s ease-in-out infinite',
 			}
 		}
 	},
