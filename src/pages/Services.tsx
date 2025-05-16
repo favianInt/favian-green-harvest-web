@@ -21,6 +21,7 @@ import { useAuth } from '@/context/AuthContext';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Clock } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const reservationSchema = z.object({
   name: z.string().min(3, { message: 'Le nom doit contenir au moins 3 caractères' }),
@@ -100,29 +101,85 @@ const Services = () => {
           </div>
         </div>
         
-        {/* Artistic Venue Section */}
+        {/* Services Tabs - Separate Artistic Venue from Room Rental and Restauration */}
         <div className="bg-faverton-green-light/10 py-16">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-medium text-faverton-green-dark text-center mb-6">Espace Artistique</h2>
-            <p className="text-center text-black max-w-3xl mx-auto text-lg mb-12">
-              Nous sommes un lieu d'accueil pour les artistes professionnels comme pour les artistes en herbe ! 
-              Notre lieu de vie artistique peut accueillir vos répétitions, événements, ateliers pour créer des 
-              échanges entre les publics de tous âges et de tous horizons.
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform card-3d-hover">
-                <h3 className="text-xl font-medium text-black mb-3">Espaces de Répétition</h3>
-                <p className="text-black">Des salles équipées pour vos répétitions artistiques, musique, théâtre et danse.</p>
-              </div>
-              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform card-3d-hover">
-                <h3 className="text-xl font-medium text-black mb-3">Location de Salles</h3>
-                <p className="text-black">Plusieurs espaces polyvalents disponibles pour vos événements, ateliers ou séminaires.</p>
-              </div>
-              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform card-3d-hover">
-                <h3 className="text-xl font-medium text-black mb-3">Services de Restauration</h3>
-                <p className="text-black">Service traiteur bio et local pour vos événements, avec des ingrédients de notre ferme.</p>
-              </div>
+            <h2 className="text-3xl md:text-4xl font-medium text-faverton-green-dark text-center mb-6">Autres Services</h2>
+            <div className="max-w-4xl mx-auto">
+              <Tabs defaultValue="artistique" className="w-full">
+                <TabsList className="grid w-full grid-cols-3 mb-8">
+                  <TabsTrigger value="artistique">Espace Artistique</TabsTrigger>
+                  <TabsTrigger value="chambres">Location de Salles</TabsTrigger>
+                  <TabsTrigger value="restauration">Service de Restauration</TabsTrigger>
+                </TabsList>
+                
+                {/* Artistic Space Tab Content */}
+                <TabsContent value="artistique">
+                  <div className="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 className="text-2xl font-medium text-black mb-4">Espace Artistique</h3>
+                    <p className="text-black mb-6">
+                      Nous sommes un lieu d'accueil pour les artistes professionnels comme pour les artistes en herbe ! 
+                      Notre lieu de vie artistique peut accueillir vos répétitions, événements, ateliers pour créer des 
+                      échanges entre les publics de tous âges et de tous horizons.
+                    </p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                      <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                        <h4 className="text-xl font-medium text-black mb-2">Espaces de Répétition</h4>
+                        <p className="text-black">Des salles équipées pour vos répétitions artistiques, musique, théâtre et danse.</p>
+                      </div>
+                      <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                        <h4 className="text-xl font-medium text-black mb-2">Ateliers Créatifs</h4>
+                        <p className="text-black">Espaces adaptés pour différents types d'ateliers artistiques et créatifs.</p>
+                      </div>
+                    </div>
+                  </div>
+                </TabsContent>
+                
+                {/* Room Rental Tab Content */}
+                <TabsContent value="chambres">
+                  <div className="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 className="text-2xl font-medium text-black mb-4">Location de Salles</h3>
+                    <p className="text-black mb-6">
+                      Nous proposons plusieurs espaces polyvalents pour vos événements professionnels ou privés. 
+                      Idéal pour des séminaires, formations, réunions ou célébrations dans un cadre naturel et inspirant.
+                    </p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                      <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                        <h4 className="text-xl font-medium text-black mb-2">Salle de Conférence</h4>
+                        <p className="text-black">Espace modulable jusqu'à 50 personnes, équipé de matériel audiovisuel professionnel.</p>
+                      </div>
+                      <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                        <h4 className="text-xl font-medium text-black mb-2">Espaces Collaboratifs</h4>
+                        <p className="text-black">Salles adaptées pour le coworking et les petites réunions professionnelles.</p>
+                      </div>
+                    </div>
+                  </div>
+                </TabsContent>
+                
+                {/* Restauration Tab Content */}
+                <TabsContent value="restauration">
+                  <div className="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 className="text-2xl font-medium text-black mb-4">Service de Restauration</h3>
+                    <p className="text-black mb-6">
+                      Notre service traiteur propose une cuisine savoureuse et responsable, élaborée avec les produits 
+                      biologiques de notre ferme et de producteurs locaux. Parfait pour vos événements et réunions.
+                    </p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                      <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                        <h4 className="text-xl font-medium text-black mb-2">Traiteur Événementiel</h4>
+                        <p className="text-black">Service complet pour vos événements privés ou professionnels, avec des menus personnalisables.</p>
+                      </div>
+                      <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                        <h4 className="text-xl font-medium text-black mb-2">Pauses Gourmandes</h4>
+                        <p className="text-black">Collations et boissons pour vos réunions et séminaires, avec des options végétariennes et véganes.</p>
+                      </div>
+                    </div>
+                  </div>
+                </TabsContent>
+              </Tabs>
             </div>
           </div>
         </div>
