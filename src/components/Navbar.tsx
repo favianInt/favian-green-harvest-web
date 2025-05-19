@@ -49,6 +49,7 @@ const Navbar = () => {
             <Link to="/" className={linkClass('/')}>Accueil</Link>
             <Link to="/products" className={linkClass('/products')}>Produits</Link>
             <Link to="/services" className={linkClass('/services')}>Services</Link>
+            <Link to="/education" className={linkClass('/education')}>Education</Link>
             <AuthButton />
             <ShoppingCart />
           </nav>
@@ -80,6 +81,12 @@ const Navbar = () => {
                   className={`${pathname === '/services' ? 'text-faverton-green' : ''} hover:text-faverton-green`}
                 >
                   Services
+                </Link>
+                <Link 
+                  to="/education" 
+                  className={`${pathname === '/education' ? 'text-faverton-green' : ''} hover:text-faverton-green`}
+                >
+                  Education
                 </Link>
                 <div className="mt-4">
                   <AuthButton />
