@@ -13,7 +13,6 @@ import Education from "./pages/Education";
 import ArtisticSpace from "./pages/ArtisticSpace";
 import NotFound from "./pages/NotFound";
 import PreLanding from "./pages/PreLanding";
-import DesignSystem from "./pages/DesignSystem";
 
 const queryClient = new QueryClient();
 
@@ -31,7 +30,6 @@ const App = () => (
               <Route path="/services" element={<Services />} />
               <Route path="/education" element={<Education />} />
               <Route path="/artistic" element={<ArtisticSpace />} />
-              <Route path="/design-system" element={<DesignSystem />} />
               <Route path="/" element={<PreLanding />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
