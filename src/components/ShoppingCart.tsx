@@ -9,7 +9,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { ShoppingCart, Plus, Minus, X } from 'lucide-react';
+import { ShoppingCart as ShoppingCartIcon, Plus, Minus, X } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
 interface ShoppingCartProps {
@@ -23,7 +23,7 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({ className }) => {
     <Sheet>
       <SheetTrigger asChild>
         <Button variant="outline" className={className}>
-          <ShoppingCart className="h-5 w-5 mr-2" />
+          <ShoppingCartIcon className="h-5 w-5 mr-2" />
           <span>Cart ({cart.length})</span>
         </Button>
       </SheetTrigger>
@@ -34,7 +34,7 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({ className }) => {
         
         {cart.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-[70vh]">
-            <ShoppingCart className="h-16 w-16 text-muted-foreground mb-4" />
+            <ShoppingCartIcon className="h-16 w-16 text-muted-foreground mb-4" />
             <h3 className="text-xl font-medium">Your cart is empty</h3>
             <p className="text-muted-foreground mt-2 text-center">
               Looks like you haven't added any products to your cart yet.

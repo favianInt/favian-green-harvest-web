@@ -26,9 +26,11 @@ const Products = () => {
   const toggleFilter = (type: keyof typeof filters, value: string) => {
     setFilters({
       ...filters,
-      [type]: filters[type]?.includes(value)
-        ? filters[type]?.filter(v => v !== value)
-        : [...(filters[type] || []), value]
+      [type]: Array.isArray(filters[type])
+        ? filters[type]?.includes(value)
+          ? (filters[type] as string[]).filter(v => v !== value)
+          : [...(filters[type] as string[] || []), value]
+        : [value]
     });
   };
 
@@ -96,7 +98,7 @@ const Products = () => {
                     <div key={occasion} className="flex items-center">
                       <Checkbox 
                         id={`occasion-${occasion}`} 
-                        checked={filters.occasion?.includes(occasion)}
+                        checked={Array.isArray(filters.occasion) && filters.occasion.includes(occasion)}
                         onCheckedChange={() => toggleFilter('occasion', occasion)}
                       />
                       <label 
@@ -118,7 +120,7 @@ const Products = () => {
                     <div key={type} className="flex items-center">
                       <Checkbox 
                         id={`type-${type}`} 
-                        checked={filters.type?.includes(type)}
+                        checked={Array.isArray(filters.type) && filters.type.includes(type)}
                         onCheckedChange={() => toggleFilter('type', type)}
                       />
                       <label 
@@ -140,7 +142,7 @@ const Products = () => {
                     <div key={color} className="flex items-center">
                       <Checkbox 
                         id={`color-${color}`} 
-                        checked={filters.color?.includes(color)}
+                        checked={Array.isArray(filters.color) && filters.color.includes(color)}
                         onCheckedChange={() => toggleFilter('color', color)}
                       />
                       <label 
@@ -162,7 +164,7 @@ const Products = () => {
                     <div key={speciesItem} className="flex items-center">
                       <Checkbox 
                         id={`species-${speciesItem}`} 
-                        checked={filters.species?.includes(speciesItem)}
+                        checked={Array.isArray(filters.species) && filters.species.includes(speciesItem)}
                         onCheckedChange={() => toggleFilter('species', speciesItem)}
                       />
                       <label 
