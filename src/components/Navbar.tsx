@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import AuthButton from './AuthButton';
+import { ShoppingCart as CartIcon } from 'lucide-react';
 import ShoppingCart from './ShoppingCart';
 
 const Navbar = () => {
@@ -50,6 +51,7 @@ const Navbar = () => {
             <Link to="/products" className={linkClass('/products')}>Produits</Link>
             <Link to="/services" className={linkClass('/services')}>Services</Link>
             <Link to="/education" className={linkClass('/education')}>Education</Link>
+            <Link to="/artistic" className={linkClass('/artistic')}>Espace Artistique</Link>
             <AuthButton />
             <ShoppingCart />
           </nav>
@@ -87,6 +89,12 @@ const Navbar = () => {
                   className={`${pathname === '/education' ? 'text-faverton-green' : ''} hover:text-faverton-green`}
                 >
                   Education
+                </Link>
+                <Link 
+                  to="/artistic" 
+                  className={`${pathname === '/artistic' ? 'text-faverton-green' : ''} hover:text-faverton-green`}
+                >
+                  Espace Artistique
                 </Link>
                 <div className="mt-4">
                   <AuthButton />

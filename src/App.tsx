@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import Products from "./pages/Products";
 import Services from "./pages/Services";
 import Education from "./pages/Education";
+import ArtisticSpace from "./pages/ArtisticSpace";
 import NotFound from "./pages/NotFound";
 import PreLanding from "./pages/PreLanding";
 
@@ -28,6 +29,7 @@ const App = () => (
               <Route path="/products" element={<Products />} />
               <Route path="/services" element={<Services />} />
               <Route path="/education" element={<Education />} />
+              <Route path="/artistic" element={<ArtisticSpace />} />
               <Route path="/" element={<PreLanding />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
