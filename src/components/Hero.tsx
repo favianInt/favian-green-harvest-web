@@ -2,8 +2,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Hero = () => {
+  const { t } = useLanguage();
+
   return (
     <div className="relative overflow-hidden bg-gradient-to-b from-faverton-green-light/80 to-transparent min-h-[70vh] flex flex-col justify-center">
       <div 
@@ -16,17 +19,17 @@ const Hero = () => {
       <div className="container mx-auto px-6 py-16 relative z-10 animate-fade-in">
         <div className="max-w-2xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-faverton-green-dark mb-6">
-            Bienvenue à <span className="text-faverton-green">FAVERTON</span>
+            {t('hero.title')}
           </h1>
           <p className="text-xl md:text-2xl text-faverton-earth-dark mb-8">
-            Une ferme biologique certifiée où innovation écologique et respect de la nature se rencontrent pour un avenir durable.
+            {t('hero.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button asChild className="bg-faverton-green hover:bg-faverton-green-dark text-white">
-              <Link to="/products">Découvrir nos produits</Link>
+              <Link to="/products">{t('hero.cta.products')}</Link>
             </Button>
             <Button asChild variant="outline" className="border-faverton-green text-faverton-green hover:bg-faverton-green-light/20">
-              <Link to="/contact">Nous contacter</Link>
+              <Link to="/contact">{t('hero.cta.contact')}</Link>
             </Button>
           </div>
         </div>

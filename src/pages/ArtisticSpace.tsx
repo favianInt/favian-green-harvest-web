@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -7,41 +7,20 @@ import ArtisticIntroSection from '@/components/artistic/ArtisticIntroSection';
 import ArtisticBookingSection from '@/components/artistic/ArtisticBookingSection';
 import ArtisticGallery from '@/components/artistic/ArtisticGallery';
 import ArtisticCommunity from '@/components/artistic/ArtisticCommunity';
+import { useLanguage } from '@/context/LanguageContext';
 
 const ArtisticSpace = () => {
-  const [language, setLanguage] = useState<'fr' | 'en'>('fr');
+  const { language } = useLanguage();
 
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
         <div className="container mx-auto px-4 py-8">
-          <div className="flex justify-between items-center mb-8">
+          <div className="mb-8">
             <h1 className="text-3xl md:text-4xl font-bold">
               {language === 'fr' ? 'Espace Artistique' : 'Artistic Space'}
             </h1>
-            <div className="flex items-center space-x-2">
-              <button
-                onClick={() => setLanguage('fr')}
-                className={`px-3 py-1 rounded-md ${
-                  language === 'fr' 
-                    ? 'bg-faverton-green text-white' 
-                    : 'bg-gray-100 text-gray-700'
-                }`}
-              >
-                FR
-              </button>
-              <button
-                onClick={() => setLanguage('en')}
-                className={`px-3 py-1 rounded-md ${
-                  language === 'en' 
-                    ? 'bg-faverton-green text-white' 
-                    : 'bg-gray-100 text-gray-700'
-                }`}
-              >
-                EN
-              </button>
-            </div>
           </div>
           
           <Tabs defaultValue="intro" className="w-full">

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -7,11 +6,14 @@ import { Menu } from 'lucide-react';
 import AuthButton from './AuthButton';
 import { ShoppingCart as CartIcon } from 'lucide-react';
 import ShoppingCart from './ShoppingCart';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useLanguage } from '@/context/LanguageContext';
 
 const Navbar = () => {
   const location = useLocation();
   const [isMobile, setIsMobile] = useState(false);
   const pathname = location.pathname;
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleResize = () => {
@@ -47,16 +49,18 @@ const Navbar = () => {
         </div>
         <div className="hidden md:flex items-center space-x-4">
           <nav className="flex items-center space-x-6 text-sm font-medium">
-            <Link to="/" className={linkClass('/')}>Accueil</Link>
-            <Link to="/products" className={linkClass('/products')}>Produits</Link>
-            <Link to="/services" className={linkClass('/services')}>Services</Link>
-            <Link to="/education" className={linkClass('/education')}>Education</Link>
-            <Link to="/artistic" className={linkClass('/artistic')}>Espace Artistique</Link>
+            <Link to="/" className={linkClass('/')}>{t('nav.home')}</Link>
+            <Link to="/products" className={linkClass('/products')}>{t('nav.products')}</Link>
+            <Link to="/services" className={linkClass('/services')}>{t('nav.services')}</Link>
+            <Link to="/education" className={linkClass('/education')}>{t('nav.education')}</Link>
+            <Link to="/artistic" className={linkClass('/artistic')}>{t('nav.artistic')}</Link>
+            <LanguageSwitcher />
             <AuthButton />
             <ShoppingCart />
           </nav>
         </div>
         <div className="flex items-center md:hidden space-x-2">
+          <LanguageSwitcher />
           <ShoppingCart className="mr-2" />
           <Sheet>
             <SheetTrigger asChild>
@@ -70,31 +74,31 @@ const Navbar = () => {
                   to="/" 
                   className={`${pathname === '/' ? 'text-faverton-green' : ''} hover:text-faverton-green`}
                 >
-                  Accueil
+                  {t('nav.home')}
                 </Link>
                 <Link 
                   to="/products" 
                   className={`${pathname === '/products' ? 'text-faverton-green' : ''} hover:text-faverton-green`}
                 >
-                  Produits
+                  {t('nav.products')}
                 </Link>
                 <Link 
                   to="/services" 
                   className={`${pathname === '/services' ? 'text-faverton-green' : ''} hover:text-faverton-green`}
                 >
-                  Services
+                  {t('nav.services')}
                 </Link>
                 <Link 
                   to="/education" 
                   className={`${pathname === '/education' ? 'text-faverton-green' : ''} hover:text-faverton-green`}
                 >
-                  Education
+                  {t('nav.education')}
                 </Link>
                 <Link 
                   to="/artistic" 
                   className={`${pathname === '/artistic' ? 'text-faverton-green' : ''} hover:text-faverton-green`}
                 >
-                  Espace Artistique
+                  {t('nav.artistic')}
                 </Link>
                 <div className="mt-4">
                   <AuthButton />
