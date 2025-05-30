@@ -45,10 +45,21 @@
 
   body {
     @apply bg-white text-black font-sf;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-sf-display;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Performance optimizations for parallax */
+  .will-change-transform {
+    will-change: transform;
   }
 
   .section-padding {
@@ -71,16 +82,16 @@
     @apply rounded-lg bg-white shadow-md p-6 hover:shadow-lg transition-shadow duration-300;
   }
   
-  /* 3D Card Hover Effect */
+  /* Enhanced 3D Card Hover Effect for Parallax */
   .card-3d-hover {
-    @apply transition-all duration-300 ease-out;
-    perspective: 1000px;
+    @apply transition-all duration-500 ease-out;
+    perspective: 1200px;
     transform-style: preserve-3d;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1), 0px 6px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.1), 0px 5px 15px rgba(0, 0, 0, 0.05);
   }
   
   .card-3d-hover:hover {
-    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.15), 0px 10px 10px rgba(0, 0, 0, 0.08);
+    box-shadow: 0px 25px 50px rgba(0, 0, 0, 0.2), 0px 15px 25px rgba(0, 0, 0, 0.1);
   }
   
   .card-3d-hover::before {
@@ -90,10 +101,10 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.3), transparent 40%);
+    background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(120, 160, 70, 0.1), transparent 40%);
     z-index: 1;
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity 0.5s;
     pointer-events: none;
     border-radius: inherit;
   }
@@ -103,11 +114,123 @@
   }
   
   .card-content-3d {
-    @apply transition-transform duration-300 relative z-10;
+    @apply transition-transform duration-500 relative z-10;
     transform-style: preserve-3d;
   }
   
   .card-3d-hover:hover .card-content-3d {
-    transform: translateZ(20px);
+    transform: translateZ(30px);
+  }
+
+  /* Parallax Performance Enhancements */
+  .parallax-container {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .parallax-element {
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+  }
+
+  /* Custom Shadow Utilities */
+  .shadow-3xl {
+    box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Backdrop Blur Utilities */
+  .backdrop-blur-3xl {
+    backdrop-filter: blur(64px);
+  }
+}
+
+/* Additional Parallax Animations */
+@keyframes parallax-float {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) scale(1);
+  }
+  25% { 
+    transform: translateY(-10px) translateX(5px) scale(1.02);
+  }
+  50% { 
+    transform: translateY(-20px) translateX(-5px) scale(1.05);
+  }
+  75% { 
+    transform: translateY(-10px) translateX(5px) scale(1.02);
+  }
+}
+
+@keyframes stagger-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slide-reveal {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Utility classes for animations */
+.animate-parallax-float {
+  animation: parallax-float 8s ease-in-out infinite;
+}
+
+.animate-stagger-fade-in {
+  animation: stagger-fade-in 0.8s ease-out forwards;
+}
+
+.animate-slide-reveal {
+  animation: slide-reveal 1s ease-out forwards;
+}
+
+.animate-zoom-in {
+  animation: zoom-in 0.6s ease-out forwards;
+}
+
+/* Responsive breakpoints helper */
+@media (max-width: 480px) {
+  .mobile-hide {
+    display: none;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .tablet-only {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1440px) {
+  .desktop-only {
+    display: block;
+  }
+}
+
+@media (min-width: 1441px) {
+  .wide-only {
+    display: block;
   }
 }

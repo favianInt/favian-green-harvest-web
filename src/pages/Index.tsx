@@ -1,33 +1,33 @@
 
 import React from 'react';
-import Hero from '@/components/Hero';
 import Navbar from '@/components/Navbar';
-import FeaturedSection from '@/components/FeaturedSection';
-import ProductPreview from '@/components/ProductPreview';
-import TestimonialSection from '@/components/TestimonialSection';
-import TechnologyPreview from '@/components/TechnologyPreview';
-import NewsSummary from '@/components/NewsSummary';
-import ContactCTA from '@/components/ContactCTA';
-import Footer from '@/components/Footer';
-import PayPalDonation from '@/components/PayPalDonation';
-import KeyObjectives from '@/components/KeyObjectives';
+import ParallaxHero from '@/components/parallax/ParallaxHero';
+import ImpactSnapshot from '@/components/parallax/ImpactSnapshot';
+import AboutPreview from '@/components/parallax/AboutPreview';
+import ArtisticHighlight from '@/components/parallax/ArtisticHighlight';
+import LearnResourcesGrid from '@/components/parallax/LearnResourcesGrid';
+import ShopCarousel from '@/components/parallax/ShopCarousel';
+import DonateSpotlight from '@/components/parallax/DonateSpotlight';
+import CommunityTestimonials from '@/components/parallax/CommunityTestimonials';
+import NewsletterSocial from '@/components/parallax/NewsletterSocial';
+import ParallaxFooter from '@/components/parallax/ParallaxFooter';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen">
       <Navbar />
-      <main className="flex-grow">
-        <Hero />
-        <FeaturedSection />
-        <KeyObjectives />
-        <ProductPreview />
-        <TechnologyPreview />
-        <TestimonialSection />
-        <PayPalDonation />
-        <NewsSummary />
-        <ContactCTA />
+      <main>
+        <ParallaxHero />
+        <ImpactSnapshot />
+        <AboutPreview />
+        <ArtisticHighlight />
+        <LearnResourcesGrid />
+        <ShopCarousel />
+        <DonateSpotlight />
+        <CommunityTestimonials />
+        <NewsletterSocial />
       </main>
-      <Footer />
+      <ParallaxFooter />
     </div>
   );
 };
