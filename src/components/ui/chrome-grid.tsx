@@ -3,7 +3,6 @@
 
 import React, { useRef, useState, useMemo, useEffect } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
-import { ExtrudeGeometry, Shape } from 'three'
 import * as THREE from 'three'
 
 interface BoxProps {
@@ -31,7 +30,7 @@ const Box = ({
     const [currentScale, setCurrentScale] = useState(1);
     
     const geometry = useMemo(() => {
-        const shape = new Shape();
+        const shape = new THREE.Shape();
         const angleStep = Math.PI * 0.5;
         const radius = cornerRadius;
         
@@ -52,7 +51,7 @@ const Box = ({
             curveSegments: 20
         };
 
-        const geometry = new ExtrudeGeometry(shape, extrudeSettings);
+        const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
         geometry.center();
         
         return geometry;
